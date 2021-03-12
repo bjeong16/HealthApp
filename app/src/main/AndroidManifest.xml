@@ -12,13 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
+        <activity
+            android:name=".Login_Activity_2"
+            android:label="@string/title_activity_login__2"
+            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
         <activity
             android:name=".Login_Activity"
             android:label="@string/title_activity_login_"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
-
-
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
