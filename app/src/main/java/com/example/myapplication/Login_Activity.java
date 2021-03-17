@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Parcel;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -130,7 +131,7 @@ public class Login_Activity extends AppCompatActivity {
 
                             User user1 = new User(username, last_workout, age, height, weight, sex);
                             Log.d("Firebase", user1.Username + user1.getLast_Workout());
-
+                            finish_login(user1);
 
                         }
                         else {
@@ -147,15 +148,25 @@ public class Login_Activity extends AppCompatActivity {
 
         );
     }
-    private void write_to_firebase(String[] information){
+
+    private void finish_login(User user1){
+        Intent fin_login = new Intent();
+        fin_login.setClass(this, MainActivity.class);
+        fin_login.putExtra("UserInfo", user1);
+        setResult(Activity.RESULT_OK, fin_login);
+        finish();
+    }
+    private void write_to_firebase(String[] information){       // When passed a string of information, make a new User class and write the information to firebase
         User user1 = new User(information[0], "chest", "21", information[3], information[2], information[4]);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("Users").child("Username").setValue(user1.Username);
-        ref.child("Users").child("Last_Workout").setValue(user1.Last_Workout);
-        ref.child("Users").child("age").setValue(user1.age);
-        ref.child("Users").child("height").setValue(user1.height);
-        ref.child("Users").child("weight").setValue(user1.weight);
-        ref.child("Users").child("Sex").setValue(user1.getSex());
+        ref.child("Users").setValue(user1.getUsername());
+        ref.child("Users").child(user1.getUsername()).child("Username").setValue(user1.Username);
+        ref.child("Users").child(user1.getUsername()).child("Last_Workout").setValue(user1.Last_Workout);
+        ref.child("Users").child(user1.getUsername()).child("age").setValue(user1.age);
+        ref.child("Users").child(user1.getUsername()).child("height").setValue(user1.height);
+        ref.child("Users").child(user1.getUsername()).child("weight").setValue(user1.weight);
+        ref.child("Users").child(user1.getUsername()).child("Sex").setValue(user1.getSex());
+        finish_login(user1);
     }
     private void switch_login_2(String info){
         Intent switch_login_2_intent = new Intent(this, Login_Activity_2.class);

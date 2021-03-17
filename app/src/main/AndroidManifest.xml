@@ -13,9 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".doActivity"
+            android:label="@string/title_activity_do"
+            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
+        <activity
+            android:name=".Workout"
+            android:label="@string/title_activity_workout"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
             android:name=".Login_Activity_2"
             android:label="@string/title_activity_login__2"
-            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".Login_Activity"
             android:label="@string/title_activity_login_"

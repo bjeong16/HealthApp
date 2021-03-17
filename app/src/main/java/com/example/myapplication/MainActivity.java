@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.kakao.sdk.common.KakaoSdk;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -25,6 +26,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.security.MessageDigest;
 
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button login = findViewById(R.id.button);
+        login.setText("Login with Google");
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {   //98793290085-40sv432i9ekgda924rj1ui65s5b81i4m.apps.googleusercontent.com
@@ -54,13 +57,35 @@ public class MainActivity extends AppCompatActivity {
                 goto_login_activity();
             }
         });
+
+        TextView title = findViewById(R.id.textView5);
+        title.setText("myHealth");
     }
 
     private void goto_login_activity(){
         Intent goto_login = new Intent(this, Login_Activity.class);
-        startActivity(goto_login);
+        startActivityForResult(goto_login, 232);
     }
 
+    private void initializeHomeScreen(){    // Update Home Screen after User Class has been passed to MainActivity
+        Button login = findViewById(R.id.button);
+        login.setVisibility(View.GONE);
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 232){
+            if(resultCode == RESULT_OK){
+                User user = data.getParcelableExtra("UserInfo");
+                Log.d("Firebase from main", user.getUsername());
+                Intent which_workout = new Intent();
+                which_workout.setClass(this, Workout.class);
+                which_workout.putExtra("UserInfo", user);
+                startActivity(which_workout);
+            }
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
