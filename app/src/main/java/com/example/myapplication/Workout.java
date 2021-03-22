@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -62,10 +61,10 @@ public class Workout extends AppCompatActivity {
             public void onClick(View v) {
                 String main = spinner.getSelectedItem().toString(); // main = 주 운동
                 String sub = spinner2.getSelectedItem().toString(); // sub = 서브 운동
-                Intent do_workout = new Intent();
-                do_workout.setClass(Workout.this, doActivity.class);
-                do_workout.putExtra("Workout Type", main + " " + sub);
-                startActivity(do_workout);
+                Intent show_workout = new Intent();
+                show_workout.setClass(Workout.this, showWorkout.class);
+                show_workout.putExtra("Workout Type", main + " " + sub);
+                startActivity(show_workout); // MAIN + Sub workout given as putExtra to show_workout activity
             }
         });
 

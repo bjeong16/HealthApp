@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".doActivity"
+            android:name=".showWorkout"
             android:label="@string/title_activity_do"
             android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
         <activity

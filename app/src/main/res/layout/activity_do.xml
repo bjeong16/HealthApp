@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".doActivity">
+    tools:context=".showWorkout">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -29,5 +29,26 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="316dp"
+        android:translationY="50dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:translationY="400dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:translationX="150dp"
+        android:translationY="500dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
